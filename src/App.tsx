@@ -1,11 +1,11 @@
 import React from 'react';
 import './App.css';
-import AppInfo from './site/AppInfo';
+import MainApp from './site/MainApp';
 
-const App: React.FunctionComponent = () => {
+function App(){
   return (
     <div className="App">
-      <AppInfo />
+      <MainApp />
     </div>
   );
 }
