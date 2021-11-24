@@ -1,15 +1,17 @@
 import React, { Component } from "react"; 
 
-        type CommentState ={
+        type State ={
             comment: string;
         }
 
-        type AcceptedProps = {
-            token: string;
+        type Props = {
+            token: string,
+            recipeId: string,
+            fetchComments: (recipeId: string) => void
         }
 
-class CommentForm extends Component<AcceptedProps, CommentState> {
-    constructor(props: AcceptedProps) {
+class CommentForm extends Component<Props, State> {
+    constructor(props: Props) {
         super(props)
 
         this.state = {
@@ -20,22 +22,18 @@ class CommentForm extends Component<AcceptedProps, CommentState> {
 
      handleSubmit = (e: any) => {
         e.preventDefault()
-        fetch('http://localhost:3000/comments/create', {
+        fetch(`http://localhost:3000/comments/create/${this.props.recipeId}`, {
             method: 'POST',
-            body: JSON.stringify({comment: this.state }),
+            body: JSON.stringify({comment: {comment: this.state.comment }}),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': this.props.token //put token here
+                'Authorization': `Bearer ${this.props.token}` //put token here
             }) 
-        })
-        .then(res =>{
-            if (res.status !== 200) {
-                throw new Error('Error! Try again');
-            } else return res.json();
         })
         .then((res) => res.json())
         .then((commentData) => {
             console.log(commentData);
+            this.props.fetchComments(this.props.recipeId)
             }
         )
         .catch(err => console.log(err))
@@ -46,7 +44,7 @@ class CommentForm extends Component<AcceptedProps, CommentState> {
             <div>
                 <form onSubmit={this.handleSubmit}>
                     <div>
-                        <label>Name</label>
+                        <label>Comment</label>
                         <input
                         type='text'
                         name='comment'

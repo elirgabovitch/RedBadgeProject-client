@@ -1,11 +1,17 @@
 import React, { Component } from 'react';
 
 type Props = {
-    token: string
+    token: string,
+    recipeId: string
 }
 
 type State = {
-    comments: []
+    comments: CommentType[]
+}
+
+type CommentType = {
+    recipeId: string,
+    comment: string
 }
 
 class CommentsList extends Component<Props, State>{
@@ -18,22 +24,31 @@ class CommentsList extends Component<Props, State>{
         }
     }
 
-    componentDidMount(){
-        fetch('http://localhost:3000/comments')
+    fetchComments(recipeId: string) {
+        fetch(`http://localhost:3000/comments/${recipeId}`, {
+            headers: new Headers({
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${this.props.token}` //put token here
+            }) 
+        })
         .then(response => response.json())
         .then(response =>{
             this.setState({
-                comments: response.data
+                comments: response
             })
-            console.log(response.data)
+            console.log(response)
         })
     }
 
+    componentDidMount(){
+        this.fetchComments(this.props.recipeId)
+    }
+
     renderCommentsList() {
-        return this.state.comments.map((comments, index) => {
-            const { id, comment } = comments
+        return this.state.comments.map((comments: CommentType, index: number) => {
+            const { recipeId, comment } = comments
             return (
-                <tr key={id}>
+                <tr key={recipeId}>
                     <td>{comment}</td>
                 </tr>
             )
@@ -50,6 +65,7 @@ class CommentsList extends Component<Props, State>{
                         {this.renderCommentsList()}
                     </tbody>
                 </table>
+                {/* <CommentForm fetchComments={this.fetchComments} token={this.props.token} recipeId={this.props.recipeId}/> */}
             </div>
         )
     }

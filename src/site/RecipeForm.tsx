@@ -7,8 +7,15 @@ import React, { Component } from "react";
         }
 
         type AcceptedProps = {
-            token: string;
+            token: string,
         }
+
+        // type CocktailType = {
+        //     recipeId: string,
+        //     name: string,
+        //     ingredients: string,
+        //     notes: string
+        // }
 
 class RecipeForm extends Component<AcceptedProps, RecipeState> {
     constructor(props: AcceptedProps) {
@@ -27,22 +34,18 @@ class RecipeForm extends Component<AcceptedProps, RecipeState> {
         e.preventDefault()
         fetch('http://localhost:3000/recipes/create', {
             method: 'POST',
-            body: JSON.stringify({name: this.state, ingredients: this.state, notes: this.state }),
+            body: JSON.stringify({recipe: {name: this.state.name, ingredients: this.state.ingredients, notes: this.state.notes }}),
             headers: new Headers({
                 'Content-Type': 'application/json',
-                'Authorization': this.props.token //put token here
+                'Authorization': `Bearer ${this.props.token}` //put token here
             }) 
         })
         .then(res =>{
-            if (res.status !== 200) {
-                throw new Error('Error! Try again');
-            } else return res.json();
+             return res.json();
         })
-        .then((res) => res.json())
         .then((cocktailData) => {
             console.log(cocktailData);
-            }
-        )
+            })
         .catch(err => console.log(err))
 }
 
@@ -78,7 +81,7 @@ class RecipeForm extends Component<AcceptedProps, RecipeState> {
                         ></input>
                     </div>
                     <div>
-                        <button type='submit'>Submit</button>
+                        <button type='submit' >Submit</button>
                     </div>
                 </form>
             </div>

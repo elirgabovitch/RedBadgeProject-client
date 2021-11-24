@@ -1,18 +1,22 @@
 import React, { Component } from 'react';
 import Auth from './Auth';
-import Splash from './Splash';
+import Navigation from './Navbar'
 
 type State = {
     sessionToken: string | undefined,
-    user: {},
+    userId: number | undefined,
+    userRole: string
   }
+
+
   
   export default class MainApp extends Component<{}, State> {
     constructor(props: {}) {
         super(props)
         this.state = {
             sessionToken: undefined,
-            user: {},
+            userId: undefined,
+            userRole: ''
         }
         this.updateToken = this.updateToken.bind(this);
         this.setUser = this.setUser.bind(this);
@@ -24,19 +28,28 @@ type State = {
         this.setState({ sessionToken: newToken })
     }
   
-    setUser(userRole: string) {
+    setUser(userRole: string, userId: number) {
         localStorage.setItem('userRole', userRole)
-        this.setState({ user: userRole })
+        this.setState({ userRole: userRole })
     }
   
     clearToken() {
         localStorage.clear();
         this.setState({ sessionToken: undefined })
     }
+
+    // landingPage = () => (
+    //     <Navigation userId={this.state.userId} />
+    // )
+
+    viewConductor = () => {
+        return this.state.sessionToken !== undefined ? <Navigation userId={this.state.userId} token={this.state.sessionToken} /> : <Auth updateToken={this.updateToken} setUser={this.setUser} />;
+    };
+
     render() {
     return (
       <div>
-          {this.state.sessionToken === undefined || null ? <Auth updateToken={this.updateToken} setUser={this.setUser} /> : <Splash token={this.state.sessionToken} /> }
+          {this.viewConductor()}
       </div>
     )
   }

@@ -6,13 +6,13 @@ type Authentication = {
     email: string,
     password: string,
     login: boolean,
-    user: {},
-    role: string
+    userId: number | undefined,
+    userRole: string
 }
 
 type Props = {
     updateToken: (newToken: string) => void
-    setUser: (user: string) => void
+    setUser: (userRole: string, userId: number ) => void
 }
 
 class Auth extends Component<Props, Authentication> {
@@ -22,8 +22,8 @@ class Auth extends Component<Props, Authentication> {
             email: '',
             password: '',
             login: true,
-            user: {},
-            role: 'user'
+            userId: undefined,
+            userRole: 'user'
         }
         this.title = this.title.bind(this)
         this.loginToggle = this.loginToggle.bind(this)
@@ -57,7 +57,7 @@ class Auth extends Component<Props, Authentication> {
                 user: {
                     email: this.state.email,
                     password: this.state.password,
-                    role: this.state.role
+                    role: this.state.userRole
                 },
             };
         let url = this.state.login
@@ -76,10 +76,11 @@ class Auth extends Component<Props, Authentication> {
             .then(data => {
                 console.log(data);
                 this.setState({
-                    user: data
+                    userRole: data.role,
+                    email: data.email,
+                    password: data.password
                 });
                 this.props.updateToken(data.sessionToken);
-                // this.props.setUser(data.user.role)
             })
     };
     render() {
