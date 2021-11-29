@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 type Props = {
     token: string,
-    updateLocalStorage: (newToken: string) => void
+    updateLocalStorage: (newToken: string) => void,
+    recipes: CocktailType[]
 }
 
 type State = {
@@ -18,29 +19,8 @@ type CocktailType = {
 
 class CocktailList extends Component<Props, State> {
 
-    constructor(props: Props) {
-        super(props)
-
-        this.state = {
-            recipes: [],
-        }
-    }
-
-    componentDidMount(){
-        fetch('http://localhost:3000/recipes')
-        .then(response => response.json())
-        .then(response =>{
-            console.log(response)
-            this.setState({
-                recipes: response
-            })
-            console.log(response)
-        })
-    }
-
-
     renderCocktailList() {
-        return this.state.recipes.map((cocktail: CocktailType, index: number) => {
+        return this.props.recipes.map((cocktail: CocktailType, index: number) => {
             const { recipeId, name, ingredients, notes } = cocktail
             return (
                 <div>
@@ -68,6 +48,6 @@ class CocktailList extends Component<Props, State> {
             </div>
         )
     }
-}
+ }
 
 export default CocktailList;

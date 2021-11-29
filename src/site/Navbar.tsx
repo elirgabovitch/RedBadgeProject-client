@@ -17,6 +17,7 @@ class Navigation extends React.Component<any, any> {
         }
     }
     render() {
+        console.log(this.props)
         return (
             <Router>
             <>
@@ -57,9 +58,9 @@ class Navigation extends React.Component<any, any> {
                             <Routes>
                                 <Route path='/' element={<Splash token={this.props.token} updateLocalStorage={this.props.updateToken} clearToken={this.props.clearToken} userId={this.props.userId} recipeId={this.props.recipeId} fetchComments={this.props.fetchComments} />} >
                                 </Route>
-                                <Route path='/Cocktails' element={<Splash token={this.props.sessionToken} updateLocalStorage={this.props.updateToken} clearToken={this.props.clearToken} userId={this.props.userId} recipeId={this.props.recipeId} fetchComments={this.props.fetchComments} />} >
+                                <Route path='/Cocktails' element={<Splash token={this.state.sessionToken} updateLocalStorage={this.props.updateToken} clearToken={this.props.clearToken} userId={this.props.userId} recipeId={this.props.recipeId} fetchComments={this.props.fetchComments} />} >
                                 </Route>
-                                <Route path='/ProfilePage' element={<ProfilePage token={this.props.sessionToken} updateLocalStorage={this.props.updateToken} clearToken={this.props.clearToken} userId={this.props.userId} />} >
+                                <Route path='/ProfilePage' element={<ProfilePage token={this.state.sessionToken} updateLocalStorage={this.props.updateToken} clearToken={this.props.clearToken} userId={this.props.userId} />} >
                                 </Route>
                                 {/* <Route path='/Admin'>
                             <Admin sessionToken={this.state.sessionToken} userId={this.state.user.id}/>

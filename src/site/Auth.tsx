@@ -61,8 +61,8 @@ class Auth extends Component<Props, Authentication> {
                 },
             };
         let url = this.state.login
-            ? `http://localhost:3000/user/login`
-            : `http://localhost:3000/user/register`;
+            ? `http://localhost:3000/users/login`
+            : `http://localhost:3000/users/register`;
         console.log(reqBody);
 
         fetch(url, {

@@ -7,8 +7,6 @@ type State = {
     userId: number | undefined,
     userRole: string
   }
-
-
   
   export default class MainApp extends Component<{}, State> {
     constructor(props: {}) {
@@ -30,7 +28,7 @@ type State = {
   
     setUser(userRole: string, userId: number) {
         localStorage.setItem('userRole', userRole)
-        this.setState({ userRole: userRole })
+        this.setState({ userRole: userRole, userId: userId })
     }
   
     clearToken() {

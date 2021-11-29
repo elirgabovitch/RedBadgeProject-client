@@ -1,21 +1,24 @@
-import React, { Component } from "react"; 
+import React, { Component } from "react";
+import DisplayRecipes from './DisplayRecipes'
 
         type RecipeState ={
             name: string;
-            ingredients: string;
-            notes: string;
+            ingredients: string,
+            notes: string,
+            recipes: CocktailType[]
         }
 
         type AcceptedProps = {
             token: string,
+            updateLocalStorage: any
         }
 
-        // type CocktailType = {
-        //     recipeId: string,
-        //     name: string,
-        //     ingredients: string,
-        //     notes: string
-        // }
+        type CocktailType = {
+            recipeId: string,
+            name: string,
+            ingredients: string,
+            notes: string,
+        }
 
 class RecipeForm extends Component<AcceptedProps, RecipeState> {
     constructor(props: AcceptedProps) {
@@ -24,7 +27,8 @@ class RecipeForm extends Component<AcceptedProps, RecipeState> {
         this.state = {
             name: '',
             ingredients: '',
-            notes: ''
+            notes: '',
+            recipes: []
         }
 
     }
@@ -45,14 +49,31 @@ class RecipeForm extends Component<AcceptedProps, RecipeState> {
         })
         .then((cocktailData) => {
             console.log(cocktailData);
+            this.getRecipes()
             })
         .catch(err => console.log(err))
+}
+
+getRecipes(){
+    // e.preventDefault()
+    fetch('http://localhost:3000/recipes')
+    .then(response => response.json())
+    .then(response =>{
+        console.log(response)
+        this.setState({
+            recipes: response
+        })
+    })
+}
+
+componentDidMount(){
+    this.getRecipes()
 }
 
     render() {
         return (
             <div>
-                <form onSubmit={this.handleSubmit}>
+                <form>
                     <div>
                         <label>Name</label>
                         <input
@@ -81,12 +102,14 @@ class RecipeForm extends Component<AcceptedProps, RecipeState> {
                         ></input>
                     </div>
                     <div>
-                        <button type='submit' >Submit</button>
+                        <button type='submit' onClick={(e) => this.handleSubmit(e)}>Submit</button>
                     </div>
                 </form>
+                <DisplayRecipes token={this.props.token} updateLocalStorage={this.props.updateLocalStorage} recipes={this.state.recipes} />
             </div>
         )
     }
 }
+
 
 export default RecipeForm;
