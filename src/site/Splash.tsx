@@ -20,8 +20,8 @@ function Splash(props: Props) {
         <div>
             {/* <DisplayRecipes token={props.token} updateLocalStorage={props.updateLocalStorage} /> */}
             <RecipeForm token={props.token} updateLocalStorage={props.updateLocalStorage}/>
-            <DisplayComments token={props.token} recipeId={props.recipeId}/>
-            <CommentForm fetchComments={props.fetchComments} token={props.token} recipeId={props.recipeId}/>
+            {/* <DisplayComments token={props.token} recipeId={props.recipeId}/> */}
+            {/* <CommentForm fetchComments={props.fetchComments} token={props.token} recipeId={props.recipeId}/> */}
             {/* <ProfilePage token={props.token} userId={props.userId} /> */}
         </div>
     )

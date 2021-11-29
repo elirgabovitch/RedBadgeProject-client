@@ -10,11 +10,11 @@ import DisplayRecipes from './DisplayRecipes'
 
         type AcceptedProps = {
             token: string,
-            updateLocalStorage: any
+            updateLocalStorage: any,
         }
 
         type CocktailType = {
-            recipeId: string,
+            id: number,
             name: string,
             ingredients: string,
             notes: string,
