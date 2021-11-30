@@ -6,7 +6,9 @@ type Props = {
     userId: number | undefined,
     token: string,
     updateLocalStorage: (newToken: string) => void,
-    clearToken: () => void
+    clearToken: () => void,
+    recipes: any,
+    recipeId: number
 }
 
 class ProfilePage extends Component<Props, {}>{
@@ -17,8 +19,8 @@ class ProfilePage extends Component<Props, {}>{
 render() {
   return (
     <div className="ProfilePage">
-      <UserComments userId={this.props.userId} token={this.props.token} updateLocalStorage={this.props.updateLocalStorage}/>
-      <UserRecipes userId={this.props.userId} token={this.props.token} updateLocalStorage={this.props.updateLocalStorage}/>
+      <UserRecipes userId={this.props.userId} token={this.props.token} updateLocalStorage={this.props.updateLocalStorage} recipeId={this.props.recipeId} recipes={this.props.recipes} />
+      <UserComments userId={this.props.userId} token={this.props.token} updateLocalStorage={this.props.updateLocalStorage} recipeId={this.props.recipeId}/>
     </div>
   );
 }
