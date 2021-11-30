@@ -64,6 +64,7 @@ getRecipes(){
             recipes: response
         })
     })
+    .catch(err => console.log(err))
 }
 
 componentDidMount(){

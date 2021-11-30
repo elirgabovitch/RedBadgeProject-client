@@ -82,6 +82,7 @@ class Auth extends Component<Props, Authentication> {
                 });
                 this.props.updateToken(data.sessionToken);
             })
+            .catch(err => console.log(err))
     };
     render() {
         return (

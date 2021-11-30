@@ -36,10 +36,6 @@ type State = {
         this.setState({ sessionToken: undefined })
     }
 
-    // landingPage = () => (
-    //     <Navigation userId={this.state.userId} />
-    // )
-
     viewConductor = () => {
         return this.state.sessionToken !== undefined ? <Navigation userId={this.state.userId} token={this.state.sessionToken} /> : <Auth updateToken={this.updateToken} setUser={this.setUser} />;
     };

@@ -1,11 +1,9 @@
 import { BrowserRouter as Router, Link, Route, Routes } from 'react-router-dom';
 import "bootstrap/dist/css/bootstrap.css";
 import { Button, Navbar, NavItem, } from 'reactstrap';
-// import Auth from './Auth';
 import Splash from './Splash';
 import ProfilePage from '../components/ProfilePage';
 import React from 'react';
-// import AppInfo from './AppInfo'
 
 
 class Navigation extends React.Component<any, any> {

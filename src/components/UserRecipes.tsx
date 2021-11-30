@@ -90,6 +90,7 @@ class CocktailListByUserId extends Component<Props, States> {
                 notes: ''
             })
         })
+        .catch(err => console.log(err))
     }
 
 

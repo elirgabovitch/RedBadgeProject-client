@@ -14,10 +14,7 @@ type Props = {
 }
 
 class ProfilePage extends Component<Props, {}>{
-    // constructor(props: Props) {
-    //     super(props)
-
-    // }
+    
 render() {
   return (
     <div className="ProfilePage">

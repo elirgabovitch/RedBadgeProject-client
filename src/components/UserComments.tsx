@@ -47,6 +47,7 @@ class CommentListByUserId extends Component<Props, State> {
                 comments: response
             })
         })
+        .catch(err => console.log(err))
     }
 
     deleteUserComments(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: number){

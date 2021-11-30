@@ -110,6 +110,7 @@ class CommentList extends Component<Props, {comments: CommentType[]}> {
                 comments: response
             })
         })
+        .catch(err => console.log(err))
     }
 
     componentDidMount(){

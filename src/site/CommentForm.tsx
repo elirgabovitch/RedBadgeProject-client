@@ -61,7 +61,6 @@ componentDidMount(){
                         <button type='submit' onClick={(e) => this.handleSubmit(e)}>Submit</button>
                     </div>
                 </form>
-                {/* <DisplayComments token={this.props.token} updateLocalStorage={this.props.updateLocalStorage} recipeId={this.props.recipeId} /> */}
             </div>
         )
     }
