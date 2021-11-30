@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import APIURL from '../helpers/environment'
 
 type CommentState ={
     comment: string
@@ -24,7 +25,7 @@ class CommentForm extends Component<AcceptedProps, CommentState> {
      handleSubmit = (e: any) => {
         e.preventDefault()
         console.log(this.props)
-        fetch(`http://localhost:3000/comments/create/${this.props.recipeId}`, {
+        fetch(`${APIURL}/comments/create/${this.props.recipeId}`, {
             method: 'POST',
             body: JSON.stringify({comment: {comment: this.state.comment}}),
             headers: new Headers({

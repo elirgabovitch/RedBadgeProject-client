@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Button, TextField} from '@material-ui/core';
+import APIURL from '../helpers/environment'
 
 type Props = {
     token: string,
@@ -33,7 +34,7 @@ class CommentListByUserId extends Component<Props, State> {
 
     getCommentsByUserId(){
         // e.preventDefault()
-        fetch('http://localhost:3000/comments/mine', {
+        fetch(`${APIURL}/comments/mine`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -52,7 +53,7 @@ class CommentListByUserId extends Component<Props, State> {
 
     deleteUserComments(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: number){
         e.preventDefault()
-        fetch(`http://localhost:3000/comments/delete/${id}`, {
+        fetch(`${APIURL}/comments/delete/${id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -66,7 +67,7 @@ class CommentListByUserId extends Component<Props, State> {
 
     updateUserComments(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: number){
         e.preventDefault()
-        fetch(`http://localhost:3000/comments/update/${id}`, { //CHANGE & ADD BUTTON OR FORM
+        fetch(`${APIURL}/comments/update/${id}`, { //CHANGE & ADD BUTTON OR FORM
             method: 'PUT',
             body: JSON.stringify({comment: {comment: this.state.comment}}),
             headers: new Headers({

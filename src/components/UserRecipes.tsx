@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Button, TextField} from "@material-ui/core";
+import APIURL from '../helpers/environment'
 
 
 type Props = {
@@ -40,7 +41,7 @@ class CocktailListByUserId extends Component<Props, States> {
 
     getCocktailsByUserId(){
         // e.preventDefault()
-        fetch('http://localhost:3000/recipes/mine', {
+        fetch(`${APIURL}/recipes/mine`, {
             method: 'GET',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -58,7 +59,7 @@ class CocktailListByUserId extends Component<Props, States> {
 
     deleteUserRecipes(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: number){
         e.preventDefault()
-        fetch(`http://localhost:3000/recipes/delete/${id}`, {
+        fetch(`${APIURL}/recipes/delete/${id}`, {
             method: 'DELETE',
             headers: new Headers({
                 'Content-Type': 'application/json',
@@ -72,7 +73,7 @@ class CocktailListByUserId extends Component<Props, States> {
 
     updateUserRecipes(e: React.MouseEvent<HTMLButtonElement, MouseEvent>, id: number){
         e.preventDefault()
-        fetch(`http://localhost:3000/recipes/update/${id}`, { //CHANGE & ADD BUTTON OR FORM
+        fetch(`${APIURL}/recipes/update/${id}`, { //CHANGE & ADD BUTTON OR FORM
             method: 'PUT',
             body: JSON.stringify({recipe: {name: this.state.name, ingredients: this.state.ingredients, notes: this.state.notes}}),
             headers: new Headers({

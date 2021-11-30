@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import DisplayRecipes from './DisplayRecipes'
+import APIURL from '../helpers/environment'
 
         type RecipeState ={
             name: string;
@@ -36,7 +37,7 @@ class RecipeForm extends Component<AcceptedProps, RecipeState> {
 
      handleSubmit = (e: any) => {
         e.preventDefault()
-        fetch('http://localhost:3000/recipes/create', {
+        fetch(`${APIURL}/recipes/create`, {
             method: 'POST',
             body: JSON.stringify({recipe: {name: this.state.name, ingredients: this.state.ingredients, notes: this.state.notes }}),
             headers: new Headers({
@@ -56,7 +57,7 @@ class RecipeForm extends Component<AcceptedProps, RecipeState> {
 
 getRecipes(){
     // e.preventDefault()
-    fetch('http://localhost:3000/recipes')
+    fetch(`${APIURL}/recipes`)
     .then(response => response.json())
     .then(response =>{
         console.log(response)

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
+import APIURL from '../helpers/environment'
 
 type Authentication = {
     email: string,
@@ -61,8 +62,8 @@ class Auth extends Component<Props, Authentication> {
                 },
             };
         let url = this.state.login
-            ? `http://localhost:3000/users/login`
-            : `http://localhost:3000/users/register`;
+            ? `${APIURL}/users/login`
+            : `${APIURL}/users/register`;
         console.log(reqBody);
 
         fetch(url, {
