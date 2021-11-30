@@ -33,7 +33,7 @@ class CocktailList extends Component<Props, {}> {
                     <td>{notes}</td>
                 </tr>
                 <DisplayComments token={this.props.token} recipeId={id}/>
-                <CommentForm token={this.props.token} recipeId={id}/>
+                <CommentForm token={this.props.token} recipeId={id} />
                 </div>
             )
         })

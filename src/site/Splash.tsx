@@ -1,8 +1,6 @@
 import React from 'react';
 // import DisplayRecipes from './DisplayRecipes';
 import RecipeForm from './RecipeForm';
-import DisplayComments from './DisplayComments';
-import CommentForm from './CommentForm';
 // import ProfilePage from '../components/ProfilePage'
 
 type Props = {

@@ -8,7 +8,9 @@ type Props = {
     updateLocalStorage: (newToken: string) => void,
     clearToken: () => void,
     recipes: any,
-    recipeId: number
+    recipeId: number,
+    id: number,
+    comments: []
 }
 
 class ProfilePage extends Component<Props, {}>{
@@ -19,8 +21,8 @@ class ProfilePage extends Component<Props, {}>{
 render() {
   return (
     <div className="ProfilePage">
-      <UserRecipes userId={this.props.userId} token={this.props.token} updateLocalStorage={this.props.updateLocalStorage} recipeId={this.props.recipeId} recipes={this.props.recipes} />
-      <UserComments userId={this.props.userId} token={this.props.token} updateLocalStorage={this.props.updateLocalStorage} recipeId={this.props.recipeId}/>
+      <UserRecipes userId={this.props.userId} token={this.props.token} updateLocalStorage={this.props.updateLocalStorage} recipeId={this.props.recipeId} recipes={this.props.recipes} id={this.props.id}/>
+      <UserComments userId={this.props.userId} token={this.props.token} updateLocalStorage={this.props.updateLocalStorage} recipeId={this.props.recipeId} id={this.props.id} comments={this.props.comments}/>
     </div>
   );
 }
