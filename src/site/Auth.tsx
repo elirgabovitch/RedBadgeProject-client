@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Button, Form, FormGroup, Label, Input } from "reactstrap";
 import APIURL from '../helpers/environment'
+import './Auth.css'
 
 type Authentication = {
     email: string,

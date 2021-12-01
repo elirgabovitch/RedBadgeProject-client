@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import DisplayComments from './DisplayComments';
 import CommentForm from './CommentForm';
+import {Card, Typography} from '@material-ui/core'
 
 
 type Props = {
@@ -8,10 +9,6 @@ type Props = {
     updateLocalStorage: (newToken: string) => void,
     recipes: CocktailType[]
 }
-
-// type State = {
-//     recipes: CocktailType[];
-// }
 
 type CocktailType = {
     id: number,
@@ -27,13 +24,15 @@ class CocktailList extends Component<Props, {}> {
             const { id, name, ingredients, notes } = cocktail
             return (
                 <div>
-                <tr key={index}>
-                    <td>{name}</td>
-                    <td>{ingredients}</td>
-                    <td>{notes}</td>
-                </tr>
+                <Card key={index}>
+                <Typography variant="h5" component="div">
+                    <p>{name}</p>
+                    <p>{ingredients}</p>
+                    <p>{notes}</p>
+                </Typography>
                 <DisplayComments token={this.props.token} recipeId={id}/>
                 <CommentForm token={this.props.token} recipeId={id} />
+                </Card>
                 </div>
             )
         })
@@ -43,7 +42,6 @@ class CocktailList extends Component<Props, {}> {
     render() {
         return (
             <div>
-                <h1 id='tableTitle'>Cocktails</h1>
                 <table id='cocktails'>
                     <tbody>
                         {this.renderCocktailList()}

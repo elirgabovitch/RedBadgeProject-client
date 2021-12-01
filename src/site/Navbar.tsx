@@ -22,41 +22,41 @@ class Navigation extends React.Component<any, any> {
                 <Navbar>
                         <div>
                             <nav>
-                                <ul>
-                                    <NavItem>
-                                        <li>
+                                
+                                    {/* <NavItem>
+                                        
                                             <Link to='/'></Link>
-                                        </li>
-                                    </NavItem>
+                                        
+                                    </NavItem> */}
                                     <NavItem>
-                                        <li>
+                                        
                                             <Link to='/Cocktails'>Cocktails</Link>
-                                        </li>
+                                        
                                     </NavItem>
                                     <NavItem>
-                                        <li>
+                                        
                                             <Link to='/ProfilePage'>Profile Page</Link>
-                                        </li>
+                                        
                                     </NavItem>
+                                    {/* <NavItem>
+                                        
+                                            <Link to='/Admin'>Admin</Link>
+                                        
+                                    </NavItem> */}
                                     <NavItem>
-                                        <li>
-                                            {/* <Link to='/Admin'>Admin</Link> */}
-                                        </li>
-                                    </NavItem>
-                                    <NavItem>
-                                        <li>
+                                        
                                             <Button onClick={() => this.props.clearToken()}>Logout</Button>
-                                            {/* Button not working */}
-                                        </li>
+                                            {/* {Button not working} */}
+                                        
                                     </NavItem>
-                                </ul>
+                                
                             </nav>
                         </div>
                 </Navbar>
                             <Routes>
-                                <Route path='/' element={<Splash token={this.props.token} updateLocalStorage={this.props.updateToken} clearToken={this.props.clearToken} userId={this.props.userId} recipeId={this.props.recipeId} fetchComments={this.props.fetchComments} />} >
+                                <Route path='/' element={<Splash token={this.props.token} updateLocalStorage={this.props.updateToken} clearToken={this.props.clearToken} userId={this.props.userId} recipeId={this.props.recipeId}  />} >
                                 </Route>
-                                <Route path='/Cocktails' element={<Splash token={this.state.sessionToken} updateLocalStorage={this.props.updateToken} clearToken={this.props.clearToken} userId={this.props.userId} recipeId={this.props.recipeId} fetchComments={this.props.fetchComments} />} >
+                                <Route path='/Cocktails' element={<Splash token={this.state.sessionToken} updateLocalStorage={this.props.updateToken} clearToken={this.props.clearToken} userId={this.props.userId} recipeId={this.props.recipeId}  />} >
                                 </Route>
                                 <Route path='/ProfilePage' element={<ProfilePage token={this.state.sessionToken} updateLocalStorage={this.props.updateToken} clearToken={this.props.clearToken} userId={this.props.userId} recipes={this.props.recipes} recipeId={this.props.recipeId} id={this.props.id} comments={this.props.comments}/>} >
                                 </Route>

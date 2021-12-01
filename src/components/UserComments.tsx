@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {Button, TextField} from '@material-ui/core';
-import APIURL from '../helpers/environment'
+import APIURL from '../helpers/environment';
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import UpdateTwoToneIcon from '@mui/icons-material/UpdateTwoTone';
+import {Card, Typography} from '@material-ui/core'
 
 type Props = {
     token: string,
@@ -93,17 +96,18 @@ class CommentListByUserId extends Component<Props, State> {
         return this.state.comments.map((comment: CommentType, index: number) => {
             console.log(comment)
             return (
-                <tr key={index}>
+                <Card key={index}>
+                    <Typography variant="h6" component="div">
                     <td>{comment.comment}</td>
-                    <Button onClick={(e) => this.deleteUserComments(e, comment.id)}>Delete</Button>
-                        <TextField
-                        helperText="Update comment"
-                        id="updateComment"
-                        label="Comment"
+                    </Typography>
+                    <Button onClick={(e) => this.deleteUserComments(e, comment.id)} endIcon={<HighlightOffIcon />}>Delete</Button>
+                        <TextField id="outlined-basic" variant="outlined"
+                        helperText="Comment"
                         onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({comment: e.target.value})}
                         />
-                        <Button onClick={(e) => this.updateUserComments(e, comment.id)}>Update</Button>
-                </tr>
+                        <Button onClick={(e) => this.updateUserComments(e, comment.id)} endIcon={<UpdateTwoToneIcon />}>Update</Button>
+                        <br></br>
+                </Card>
             )}
         )}
 

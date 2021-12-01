@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import DisplayRecipes from './DisplayRecipes'
 import APIURL from '../helpers/environment'
+import {Button} from '@material-ui/core'
+import SendTwoToneIcon from '@mui/icons-material/SendTwoTone';
 
         type RecipeState ={
             name: string;
@@ -77,7 +79,7 @@ componentDidMount(){
             <div>
                 <form>
                     <div>
-                        <label>Name</label>
+                        <label>Cocktail Name </label>
                         <input
                         type='text'
                         name='name'
@@ -85,8 +87,9 @@ componentDidMount(){
                         onChange={(e) => this.setState({name: e.target.value})}
                         ></input>
                     </div>
+                    <br/>
                     <div>
-                        <label>Ingredients</label>
+                        <label>Ingredients </label>
                         <input
                         type='text'
                         name='ingredients'
@@ -94,17 +97,20 @@ componentDidMount(){
                         onChange={(e) => this.setState({ingredients: e.target.value})}
                         ></input>
                     </div>
+                    <br/>
                     <div>
-                        <label>Notes</label>
+                        <label>Notes </label>
                         <input
                         type='text'
                         name='notes'
                         value={this.state.notes}
                         onChange={(e) => this.setState({notes: e.target.value})}
                         ></input>
+                        <br/>
                     </div>
                     <div>
-                        <button type='submit' onClick={(e) => this.handleSubmit(e)}>Submit</button>
+                        <br></br>
+                        <Button type='submit' onClick={(e) => this.handleSubmit(e)} variant="contained" endIcon={<SendTwoToneIcon />}>Submit</Button>
                     </div>
                 </form>
                 <DisplayRecipes token={this.props.token} updateLocalStorage={this.props.updateLocalStorage} recipes={this.state.recipes} />

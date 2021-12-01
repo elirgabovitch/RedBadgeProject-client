@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Auth from './Auth';
-import Navigation from './Navbar'
+import Navigation from './Navbar';
 
 type State = {
     sessionToken: string | undefined,

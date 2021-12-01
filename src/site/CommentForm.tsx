@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import APIURL from '../helpers/environment'
+import {Button} from '@material-ui/core'
+import SendTwoToneIcon from '@mui/icons-material/SendTwoTone';
 
 type CommentState ={
     comment: string
@@ -58,8 +60,9 @@ componentDidMount(){
                         onChange={(e) => this.setState({comment: e.target.value})}
                         ></input>
                     </div>
+                    <br/>
                     <div>
-                        <button type='submit' onClick={(e) => this.handleSubmit(e)}>Submit</button>
+                        <Button type='submit' onClick={(e) => this.handleSubmit(e)} variant="contained" endIcon={<SendTwoToneIcon />}>Submit</Button>
                     </div>
                 </form>
             </div>

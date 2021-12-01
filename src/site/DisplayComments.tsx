@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import APIURL from '../helpers/environment'
+import APIURL from '../helpers/environment';
+import {Card, Typography} from '@material-ui/core'
 
 type Props = {
     token: string,
     recipeId: number,
-    // comments: CommentType[]
 }
 
 type CommentType = {
@@ -48,9 +48,11 @@ class CommentList extends Component<Props, {comments: CommentType[]}> {
             // const { id } = comment
             if (comment.recipeId === this.props.recipeId){
             return (
-                <div key={index}>
+                <Card key={index}>
+                     <Typography variant="h6" component="div">
                     <p>{comment.comment}</p>
-                </div>
+                    </Typography>
+                </Card>
             )}
             else {
                 return null
@@ -63,7 +65,7 @@ class CommentList extends Component<Props, {comments: CommentType[]}> {
     render() {
         return (
             <div>
-                <h1 id='tableTitle'>Comments</h1>
+                <h4 id='tableTitle'>Comments</h4>
                 <table id='comments'>
                     <tbody>
                         {this.renderCommentList()}

@@ -7,7 +7,7 @@ type Props = {
     token: string,
     updateLocalStorage: (newToken: string) => void,
     clearToken: () => void,
-    recipes: any,
+    recipes: [],
     recipeId: number,
     id: number,
     comments: []

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import {Button, TextField} from "@material-ui/core";
 import APIURL from '../helpers/environment'
+import HighlightOffIcon from '@mui/icons-material/HighlightOff';
+import UpdateTwoToneIcon from '@mui/icons-material/UpdateTwoTone';
+import {Card, Typography} from '@material-ui/core'
 
 
 type Props = {
@@ -103,31 +106,29 @@ class CocktailListByUserId extends Component<Props, States> {
     renderCocktailListByUserId() {
         return this.state.recipes.map((cocktail: CocktailType, index: number) => {
             return (
-                <tr key={index}>
+                <Card key={index}>
+                    <Typography variant="h5" component="div">
                     <td>{cocktail.name}</td>
                     <td>{cocktail.ingredients}</td>
                     <td>{cocktail.notes}</td>
-                    <Button onClick={(e) => this.deleteUserRecipes(e, cocktail.id)}>Delete</Button>
-                    <TextField
-                    helperText="Update name"
-                    id="updateName"
-                    label="Name"
+                    </Typography>
+                    <div>
+                    </div>
+                    <Button onClick={(e) => this.deleteUserRecipes(e, cocktail.id)} endIcon={<HighlightOffIcon />}>Delete</Button>
+                    <TextField id="outlined-basic" variant="outlined"
+                    helperText="Cocktail name"
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({name: e.target.value})}
                     />
-                    <TextField
-                    helperText="Update ingredients"
-                    id="updateIngredients"
-                    label="Ingredients"
+                    <TextField id="outlined-basic" variant="outlined"
+                    helperText="Ingredients"
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({ingredients: e.target.value})}
                     />
-                    <TextField
-                    helperText="Update notes"
-                    id="updateNotes"
-                    label="Notes"
+                    <TextField id="outlined-basic" variant="outlined"
+                    helperText="Notes"
                     onChange={(e: React.ChangeEvent<HTMLInputElement>) => this.setState({notes: e.target.value})}
                     />
-                    <Button onClick={(e) => this.updateUserRecipes(e, cocktail.id)}>Update</Button>
-                </tr>
+                    <Button onClick={(e) => this.updateUserRecipes(e, cocktail.id)} endIcon={<UpdateTwoToneIcon />}>Update</Button>
+                </Card>
             )
         })
     }
